@@ -1,7 +1,7 @@
 # from src.widget import get_date, mask_account_card
 from src.processing import filter_by_state, sort_by_date
 
-user_numbers = "Visa Classic 6831982476737658"
+user_number = "Visa Classic 6831982476737658"
 
 user_date_str = "2024-03-11T02:26:18.671407"
 
