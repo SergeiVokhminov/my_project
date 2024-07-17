@@ -7,11 +7,11 @@ def mask_account_card(number: str) -> str:
     """Функция, которая обрабатывает номер карты или счета и маскирует их."""
 
     number_split = number.split()
-    if "Счет" in number_split:
+    if "Счет" in number_split and len(number_split[1]) == 20:
         return f"{number_split[0]} {get_mask_account(number_split[1])}"
     elif number_split[0] in ["Visa", "MasterCard", "Maestro", "Visa Classic", "Visa Platinum", "Visa Gold"]:
         name_card = " ".join(number_split)[:-16]
-        return f"{name_card} {get_mask_card_number(''.join(number_split)[-16:])}"
+        return f"{name_card}{get_mask_card_number(''.join(number_split)[-16:])}"
     else:
         return "Введены неверные данные"
 
