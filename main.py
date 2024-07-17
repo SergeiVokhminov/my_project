@@ -1,5 +1,5 @@
-# from src.widget import get_date, mask_account_card
 from src.processing import filter_by_state, sort_by_date
+from src.widget import get_date, mask_account_card
 
 user_number = "Visa Classic 6831982476737658"
 
@@ -12,9 +12,9 @@ user_list = [
     {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
 ]
 
-# print(mask_account_card(user_number))
+print(mask_account_card(user_number))
 
-# print(get_date(user_date_str))
+print(get_date(user_date_str))
 
 print(filter_by_state(user_list, "CANCELED"))
 
