@@ -11,21 +11,26 @@ def log(filename: Any) -> Callable:
             try:
                 result = func(*args, **kwargs)
                 log_message = f"{func.__name__} OK. Результат: {result}"
-                with open(filename, "a", encoding="utf-8") as f:
-                    f.write(log_message + "\n")
-                print(log_message)
+                if filename:
+                    with open(filename, "a", encoding="utf-8") as f:
+                        f.write(log_message + "\n")
+                    print(log_message)
+                else:
+                    print(log_message)
             except Exception as f:
                 error_message = f"{func.__name__} error: {f}. Inputs:{args}, {kwargs}"
-                with open(filename, "a", encoding="utf-8") as f:
-                    f.write(error_message + "\n")
-                print(error_message)
+                if filename:
+                    with open(filename, "a", encoding="utf-8") as f:
+                        f.write(error_message + "\n")
+                else:
+                    print(error_message)
 
         return wrapper
 
     return decorator
 
 
-@log(filename="../mylog.txt")
+@log(filename='../mylog.txt')
 def my_function(x, y):
     return int(x / y)
 

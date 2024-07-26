@@ -3,3 +3,9 @@ my_function error: division by zero. Inputs:(10, 0), {}
 my_function OK. Результат: 5
 my_function error: unsupported operand type(s) for /: 'int' and 'str'. Inputs:(10, 't'), {}
 my_function OK. Результат: 5
+my_function error: division by zero. Inputs:(10, 0), {}
+my_function error: unsupported operand type(s) for /: 'int' and 'str'. Inputs:(10, '5'), {}
+my_function OK. Результат: 2
+my_function OK. Результат: 5
+my_function error: division by zero. Inputs:(10, 0), {}
+my_function OK. Результат: 5

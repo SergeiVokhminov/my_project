@@ -45,3 +45,19 @@ def test_log_division(capsys):
     except TypeError:
         captured = capsys.readouterr()
         assert "my_function error: Inputs: (6, 0) {}" in captured.out
+
+
+def test_log_not_file(capsys):
+    @log(filename="")
+    def my_function(x: int, y: int) -> int:
+        return int(x / y)
+
+    my_function(6, 2)
+    captured = capsys.readouterr()
+    assert "my_function OK. Результат: 3" in captured.out
+
+    try:
+        my_function(6, 0)
+    except TypeError:
+        captured = capsys.readouterr()
+        assert "my_function error: Inputs: (6, 0) {}" in captured.out
