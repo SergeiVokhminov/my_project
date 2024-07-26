@@ -10,18 +10,18 @@ def log(filename: Any) -> Callable:
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             try:
                 result = func(*args, **kwargs)
-                log_message = f"{func.__name__} OK. Результат: {result}"
+                log_message = f"{func.__name__} OK. Результат: {result}\n"
                 if filename:
                     with open(filename, "a", encoding="utf-8") as f:
-                        f.write(log_message + "\n")
+                        f.write(log_message)
                     print(log_message)
                 else:
                     print(log_message)
             except Exception as f:
-                error_message = f"{func.__name__} error: {f}. Inputs:{args}, {kwargs}"
+                error_message = f"{func.__name__} error: {f}. Inputs:{args}, {kwargs}\n"
                 if filename:
                     with open(filename, "a", encoding="utf-8") as f:
-                        f.write(error_message + "\n")
+                        f.write(error_message)
                 else:
                     print(error_message)
 
@@ -30,10 +30,10 @@ def log(filename: Any) -> Callable:
     return decorator
 
 
-@log(filename='../mylog.txt')
-def my_function(x, y):
+@log(filename="../mylog.txt")
+def my_function(x: int, y: int) -> int:
     return int(x / y)
 
 
-my_function(10, 2)
+my_function(10, 5)
 # print(my_function(10, 0))

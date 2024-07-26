@@ -9,3 +9,8 @@ my_function OK. Результат: 2
 my_function OK. Результат: 5
 my_function error: division by zero. Inputs:(10, 0), {}
 my_function OK. Результат: 5
+my_function error: division by zero. Inputs:(10, 0), {}
+my_function error: division by zero. Inputs:(10, 0), {}
+my_function OK. Результат: 2
+my_function OK. Результат: 2
+my_function OK. Результат: 2
