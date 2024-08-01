@@ -35,5 +35,5 @@ def my_function(x: int, y: int) -> int:
     return x + y
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     my_function(10, 0)
