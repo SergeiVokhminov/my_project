@@ -61,10 +61,10 @@ def test_log_not_file(capsys: Any) -> None:
     try:
         my_function(6, 0)
     except TypeError:
-        with open('mylog.txt', 'r') as f:
+        with open("mylog.txt", "r") as f:
             assert "my_function error: Inputs: (6, 0) {}" in f.read()
 
 
 @log()
-def test_log():
-    return 'test'
+def test_log() -> str:
+    return "test"

@@ -1,10 +1,11 @@
 import json
 import os
+from typing import Any
 
 PATH_TO_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "operations.json")
 
 
-def get_json_file(path: str) -> list:
+def get_json_file(path: str) -> Any:
     """Функция, которая принимает JSON-файл и возвращает список словарей с данными о финансовых транзакциях."""
     try:
         with open(path, "r", encoding="utf-8") as f:
