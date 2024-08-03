@@ -2,7 +2,7 @@ from functools import wraps
 from typing import Any, Callable
 
 
-def log(filename: Any) -> Callable:
+def log(filename: str | None = None) -> Callable:
     """Декоратор, который логирует начало или конец работы функции и записывает в файл."""
 
     def decorator(func: Callable) -> Callable:
@@ -32,8 +32,8 @@ def log(filename: Any) -> Callable:
 
 @log(filename="../mylog.txt")
 def my_function(x: int, y: int) -> int:
-    return int(x / y)
+    return x + y
 
 
-my_function(10, 5)
-# print(my_function(10, 0))
+if __name__ == "__main__":
+    my_function(10, 0)

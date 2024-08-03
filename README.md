@@ -10,16 +10,30 @@
 3. в модуле processing.py создается новый список словарей у которых ключ соответствует значению, а также список словарей сортируется по 'date'.
 4. в модуле generators.py реализованы три генератора.
 5. в модуле decorators.py реализован декоратор log.
+6. в модуле external_api.py выводит сумму транзакции в рублях. Если транзакция в долларах или евро, то конвектирует в рубли.
+7. в модуле utils.py принимает JSON-файл и возвращает список словарей с данными о финансовых транзакциях.
 
 ## Используемые зависимости в проекте:
 
 - версия Python 3.12.4
 - black==24.4.2
+- click==8.1.7
+- coverage==7.6.0
 - flake8==7.1.0
+- iniconfig==2.0.0
 - isort==5.13.2
+- mccabe==0.7.0
 - mypy==1.10.1
+- mypy-extensions==1.0.0
+- packaging==24.1
+- pathspec==0.12.1
+- platformdirs==4.2.2
+- pluggy==1.5.0
+- pycodestyle==2.12.0
+- pyflakes==3.2.0
 - pytest==8.2.2
 - pytest-cov==5.0.0
+- typing_extensions==4.12.2
 
 ## Установка
 
@@ -35,14 +49,35 @@ pip install -r requirements.txt
 
 ## Использование модуля main.py
 
-1. Откройте модуль main.py.
-2. Заполните переменные user_numbers, user_date_srt, user_list.
-3. Запустите модуль main.py.
+1. откройте модуль main.py.
+2. заполните переменные user_numbers, user_date_srt, user_list.
+3. запустите модуль main.py.
+
+## Использование модуля external_api.py
+
+1. откройте модуль external_api.py
+2. запустите для примера:
+'''
+if __name__ == "__main__":
+    print(f"Сумма в рублях (RUB): {fnc_convert_rud({'amount': 100, 'currency': 'RUB'})}")
+    print(f"Сумма в рублях (USD): {fnc_convert_rud({'amount': 100, 'currency': 'USD'})}")
+    print(f"Сумма в рублях (EUR): {fnc_convert_rud({'amount': 100, 'currency': 'EUR'})}")
+    print(f"Сумма в рублях (CURRENCY): {fnc_convert_rud({'amount': 100, 'currency': 'E'})}")
+'''
+
+## Использование модуля utils.py
+
+1. откройте модуль utils.py
+2. запустите для примера:
+'''
+if __name__ == "__main__":
+    print(get_json_file(PATH_TO_FILE))
+'''
 
 ## Проверка работы генераторов:
 
-1. Откройте модуль tests/test_generators.py
-2. Запустите для примера:
+1. откройте модуль tests/test_generators.py
+2. запустите для примера:
 '''
 def test_filter_by_currency(coll: List[Dict[str, dict]]) -> None:
     """Тестирование функции вывода списка по ключевому значению."""
@@ -52,20 +87,19 @@ def test_filter_by_currency(coll: List[Dict[str, dict]]) -> None:
 '''
 
 ## Работа декоратора
-1. Откройте модуль decorators.py
-2. Запустите для примера:
+
+1. откройте модуль decorators.py
+2. запустите для примера:
 '''
-@log(filename='../mylog.txt')
-def my_function(x, y):
-    return int(x / y)
-my_function(10, 0)
+if __name__ == "__main__":
+    my_function(10, 0)
 '''
 
 ## Тестирование:
 
-1. В проекте используется фреймворк тестирования pytest.
-2. Для запуска тестов выполните команду: pytest.
-3. Для просмотра покрытия тестов, выполните команду: pytest --cov
+1. в проекте используется фреймворк тестирования pytest.
+2. для запуска тестов выполните команду: pytest.
+3. для просмотра покрытия тестов, выполните команду: pytest --cov
 
 ## Документация
 

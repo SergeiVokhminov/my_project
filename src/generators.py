@@ -1,14 +1,14 @@
 from typing import Any, Dict, Generator, List
 
 
-def filter_by_currency(transaction: List[Dict[str, Any]], currency: str) -> Generator[None, None, None]:
+def filter_by_currency(transaction: List[Dict[str, Any]], currency: str) -> Generator[Any, None, None]:
     """Функция фильтрующая словарь по заданному значению."""
     for item in transaction:
         if item["operationAmount"]["currency"]["code"] == currency:
             yield item
 
 
-def transaction_descriptions(transaction: List[Dict[str, Any]]) -> Generator[None, None, None]:
+def transaction_descriptions(transaction: List[Dict[str, Any]]) -> Generator[Any, None, None]:
     """Функция, которая возвращает описание каждой операции по очереди."""
     for key in transaction:
         yield key.get("description")
