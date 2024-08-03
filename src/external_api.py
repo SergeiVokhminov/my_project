@@ -8,11 +8,11 @@ load_dotenv()
 apilayer_token = os.getenv("API_KEY")
 
 
-def fnc_convert_rud(transaction: dict) -> float:
+def fnc_convert_rud(transaction: dict) -> float | str:
     """Функция, которая принимает на вход транзакцию и возвращает сумму транзакции в рублях."""
 
-    amount = transaction["operationAmount"]["amount"]
-    currency = transaction["operationAmount"]["currency"]["code"]
+    amount = transaction["amount"]
+    currency = transaction["currency"]
 
     if currency == "RUB":
         return round(float(amount), 2)
@@ -24,37 +24,11 @@ def fnc_convert_rud(transaction: dict) -> float:
         data_result = response.json()
         return round(float(data_result["result"]), 2)
     else:
-        raise ValueError(f"Неизвестная валюта: {currency}")
+        return "Неизвестная валюта"
 
 
 if __name__ == "__main__":
-    user_dict_rub = {
-        "id": 441945886,
-        "state": "EXECUTED",
-        "date": "2019-08-26T10:50:58.294041",
-        "operationAmount": {"amount": "31957.58", "currency": {"name": "руб.", "code": "RUB"}},
-        "description": "Перевод организации",
-        "from": "Maestro 1596837868705199",
-        "to": "Счет 64686473678894779589",
-    }
-    print(f"Сумма в рублях (RUB): {fnc_convert_rud(user_dict_rub)}")
-    user_dict_usd = {
-        "id": 441945886,
-        "state": "EXECUTED",
-        "date": "2019-08-26T10:50:58.294041",
-        "operationAmount": {"amount": "31957.58", "currency": {"name": "USD", "code": "USD"}},
-        "description": "Перевод организации",
-        "from": "Maestro 1596837868705199",
-        "to": "Счет 64686473678894779589",
-    }
-    print(f"Сумма в рублях (USD): {fnc_convert_rud(user_dict_usd)}")
-    user_dict_eur = {
-        "id": 441945886,
-        "state": "EXECUTED",
-        "date": "2019-08-26T10:50:58.294041",
-        "operationAmount": {"amount": "31957.58", "currency": {"name": "EUR", "code": "EUR"}},
-        "description": "Перевод организации",
-        "from": "Maestro 1596837868705199",
-        "to": "Счет 64686473678894779589",
-    }
-    print(f"Сумма в рублях (EUR): {fnc_convert_rud(user_dict_eur)}")
+    print(f"Сумма в рублях (RUB): {fnc_convert_rud({'amount': 100, 'currency': 'RUB'})}")
+    print(f"Сумма в рублях (USD): {fnc_convert_rud({'amount': 100, 'currency': 'USD'})}")
+    print(f"Сумма в рублях (EUR): {fnc_convert_rud({'amount': 100, 'currency': 'EUR'})}")
+    print(f"Сумма в рублях (CURRENCY): {fnc_convert_rud({'amount': 100, 'currency': 'E'})}")
