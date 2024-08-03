@@ -12,9 +12,11 @@ def get_json_file(path: str) -> list:
                 data = json.load(f)
                 return data
             except json.JSONDecodeError:
-                return []
+                data = []
+                return data
     except FileNotFoundError:
-        return []
+        data = []
+        return data
 
 
 if __name__ == "__main__":
