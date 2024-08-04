@@ -3,14 +3,17 @@ import logging
 import os
 from typing import Any
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+rel_file_path = os.path.join(current_dir, "../logs/utils.log")
+abs_file_path = os.path.abspath(rel_file_path)
+PATH_TO_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "operations.json")
+
 my_logger = logging.getLogger("utils")
-file_handler = logging.FileHandler("logs/utils.log", "w", encoding="utf-8")
+file_handler = logging.FileHandler(abs_file_path, "w", encoding="utf-8")
 file_formater = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 file_handler.setFormatter(file_formater)
 my_logger.addHandler(file_handler)
 my_logger.setLevel(logging.INFO)
-
-PATH_TO_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "operation.json")
 
 
 def get_json_file(path: str) -> Any:
