@@ -45,8 +45,8 @@ def test_log_division(capsys: Any) -> None:
     try:
         my_function(6, 0)
     except TypeError:
-        captured = capsys.readouterr()
-        assert "my_function error: Inputs: (6, 0) {}" in captured.out
+        with open("mylog.txt", "r") as f:
+            assert "my_function error: Inputs: (6, 0) {}" in f.read()
 
 
 def test_log_not_file(capsys: Any) -> None:
@@ -61,8 +61,8 @@ def test_log_not_file(capsys: Any) -> None:
     try:
         my_function(6, 0)
     except TypeError:
-        with open("mylog.txt", "r") as f:
-            assert "my_function error: Inputs: (6, 0) {}" in f.read()
+        captured = capsys.readouterr()
+        assert "my_function error: Inputs: (6, 0) {}" in captured.out
 
 
 @log()

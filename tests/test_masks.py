@@ -21,9 +21,9 @@ def test_get_mask_card_number(string: str, expected_result: str) -> None:
     "string, expected_result",
     [
         ("12346831982476737658", "**7658"),
-        ("123456789009876", "Неверный номер счета"),
-        ("sadfg12345", "Неверный номер счета"),
-        ("", "Неверный номер счета"),
+        ("123456789009876", "Неверный номер счёта"),
+        ("sadfg12345", "Неверный номер счёта"),
+        ("", "Неверный номер счёта"),
     ],
 )
 def tests_get_mask_account(string: str, expected_result: str) -> None:
