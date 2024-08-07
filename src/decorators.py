@@ -42,4 +42,4 @@ def my_function(x: int, y: int) -> int:
 
 
 if __name__ == "__main__":
-    my_function(10, 1)
+    my_function(10, 0)
