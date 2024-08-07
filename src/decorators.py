@@ -16,18 +16,18 @@ def log(filename: str | None = None) -> Callable:
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             try:
                 result = func(*args, **kwargs)
-                log_message = f"{func.__name__} OK. Результат: {result}\n"
+                log_message = f"{func.__name__} OK. Результат: {result}"
                 if filename:
                     with open(filename, "a", encoding="utf-8") as f:
-                        f.write(log_message)
+                        f.write(log_message + "\n")
                     print(log_message)
                 else:
                     print(log_message)
             except Exception as f:
-                error_message = f"{func.__name__} error: {f}. Inputs:{args}, {kwargs}\n"
+                error_message = f"{func.__name__} error: {f}. Inputs:{args}, {kwargs}"
                 if filename:
                     with open(filename, "a", encoding="utf-8") as f:
-                        f.write(error_message)
+                        f.write(error_message + "\n")
                 else:
                     print(error_message)
 
@@ -42,4 +42,4 @@ def my_function(x: int, y: int) -> int:
 
 
 if __name__ == "__main__":
-    my_function(10, 0)
+    my_function(10, 1)
