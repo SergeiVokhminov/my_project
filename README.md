@@ -70,53 +70,44 @@ pip install -r requirements.txt
 
 1. откройте модуль external_api.py
 2. запустите для примера:
-'''
-if __name__ == "__main__":
+- ''' if __name__ == "__main__":
     print(f"Сумма в рублях (RUB): {fnc_convert_rud({'amount': 100, 'currency': 'RUB'})}")
     print(f"Сумма в рублях (USD): {fnc_convert_rud({'amount': 100, 'currency': 'USD'})}")
     print(f"Сумма в рублях (EUR): {fnc_convert_rud({'amount': 100, 'currency': 'EUR'})}")
-    print(f"Сумма в рублях (CURRENCY): {fnc_convert_rud({'amount': 100, 'currency': 'E'})}")
-'''
+    print(f"Сумма в рублях (CURRENCY): {fnc_convert_rud({'amount': 100, 'currency': 'E'})}") '''
 
 ## Использование модуля utils.py
 
 1. откройте модуль utils.py
 2. запустите для примера:
-'''
-if __name__ == "__main__":
-    print(get_json_file(PATH_TO_FILE))
-'''
+- ''' if __name__ == "__main__":
+    print(get_json_file(PATH_TO_FILE)) '''
 
 ## Использование модуля work_files_csv_xlsx.py
 
 1. откройте модуль work_files_csv_xlsx.py
 2. запустите для примера:
-'''
-if __name__ == '__main__':
-    print(get_file_csv('../data/transactions.csv'))
-    print(get_file_xlsx('../data/transactions_excel.xlsx'))
-'''
+- ''' if __name__ == "__main__":
+    print(get_file_csv(PATH_TO_FILE_CSV)) '''
+- ''' if __name__ == "__main__":
+print(get_file_xlsx(PATH_TO_FILE_EXCEL)) '''
 
 ## Проверка работы генераторов:
 
 1. откройте модуль tests/test_generators.py
 2. запустите для примера:
-'''
-def test_filter_by_currency(coll: List[Dict[str, dict]]) -> None:
+- ''' def test_filter_by_currency(coll: List[Dict[str, dict]]) -> None:
     """Тестирование функции вывода списка по ключевому значению."""
     usd_transaction = filter_by_currency(transactions, "USD")
     for key in range(3):
-        assert next(usd_transaction)
-'''
+        assert next(usd_transaction) '''
 
 ## Работа декоратора
 
 1. откройте модуль decorators.py
 2. запустите для примера:
-'''
-if __name__ == "__main__":
-    my_function(10, 0)
-'''
+- ''' if __name__ == "__main__":
+   my_function(10, 0) '''
 
 ## Тестирование:
 
