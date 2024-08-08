@@ -40,13 +40,23 @@ def test_log_division(capsys: Any) -> None:
 
     my_function(6, 2)
     captured = capsys.readouterr()
-    assert "my_function OK. Результат: 3" in captured.out
+    assert "my_function OK. Результат: 3.0" in captured.out
 
-    try:
-        my_function(6, 0)
-    except TypeError:
-        with open("mylog.txt", "r") as f:
-            assert "my_function error: Inputs: (6, 0) {}" in f.read()
+    my_function(6, 0)
+    with open("../mylog.txt", "r") as f:
+        data = f.read().split("\n")
+    assert data[-2] == "my_function error: division by zero. Inputs:(6, 0), {}"
+
+
+def test_log_sum_error(capsys: Any) -> None:
+    @log(filename="../mylog.txt")
+    def my_function(x: int, y: int) -> int:
+        return x + y
+
+    my_function(6, "0")
+    with open("../mylog.txt", "r") as f:
+        data = f.read().split("\n")
+    assert data[-2] == "my_function error: unsupported operand type(s) for +: 'int' and 'str'. Inputs:(6, '0'), {}"
 
 
 def test_log_not_file(capsys: Any) -> None:
@@ -58,11 +68,9 @@ def test_log_not_file(capsys: Any) -> None:
     captured = capsys.readouterr()
     assert "my_function OK. Результат: 3" in captured.out
 
-    try:
-        my_function(6, 0)
-    except TypeError:
-        captured = capsys.readouterr()
-        assert "my_function error: Inputs: (6, 0) {}" in captured.out
+    my_function(6, 0)
+    captured = capsys.readouterr()
+    assert "my_function error: division by zero. Inputs:(6, 0), {}\n" in captured.out
 
 
 @log()
