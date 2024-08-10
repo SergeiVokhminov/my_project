@@ -1,6 +1,7 @@
+from typing import Any, Dict, List
+
 import pytest
 
-from typing import Any, Dict, List
 from src.transactions import get_transactions_fnc, get_transactions_key
 
 transactions = [
@@ -55,15 +56,15 @@ transactions = [
 @pytest.fixture
 def coll_fnc() -> List[Dict[str, Any]]:
     return [
-            {"id": 41428829, "state": "EXECUTED", "description": "Перевод организации"},
-            {"id": 939719570, "state": "EXECUTED", "description": "Перевод организации"},
-            {"id": 594226727, "state": "CANCELED", "description": "Перевод с карты на карту"},
-            {"id": 615064591, "state": "CANCELED", "description": "Открытие вклада"}
+        {"id": 41428829, "state": "EXECUTED", "description": "Перевод организации"},
+        {"id": 939719570, "state": "EXECUTED", "description": "Перевод организации"},
+        {"id": 594226727, "state": "CANCELED", "description": "Перевод с карты на карту"},
+        {"id": 615064591, "state": "CANCELED", "description": "Открытие вклада"},
     ]
 
 
 def tests_transactions_fnc(coll_fnc: List[Dict[str, Any]]) -> Any:
-    assert get_transactions_fnc(coll_fnc, 'открытие') == [
+    assert get_transactions_fnc(coll_fnc, "открытие") == [
         {"id": 615064591, "state": "CANCELED", "description": "Открытие вклада"}
     ]
 
@@ -71,15 +72,15 @@ def tests_transactions_fnc(coll_fnc: List[Dict[str, Any]]) -> Any:
 @pytest.mark.parametrize(
     "transactions, description, expected",
     [
-        (transactions,
-         ["перевод с карты", "перевод Организации"],
-         {"Перевод организации": 2, "Перевод с карты на карту": 1}),
-        (transactions,
-         ["перевод с карты"],
-         {"Перевод с карты на карту": 1}),
+        (
+            transactions,
+            ["перевод с карты", "перевод Организации"],
+            {"Перевод организации": 2, "Перевод с карты на карту": 1},
+        ),
+        (transactions, ["перевод с карты"], {"Перевод с карты на карту": 1}),
         (transactions, [], {}),
         ([], ["перевод с карты", "перевод организации"], {}),
     ],
 )
-def tests_transactions_key(transactions, description, expected):
+def tests_transactions_key(transactions: List[Dict], description: List, expected: List[Dict]) -> Any:
     assert get_transactions_key(transactions, description) == expected
