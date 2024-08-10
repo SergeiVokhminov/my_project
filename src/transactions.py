@@ -86,7 +86,7 @@ user_dict = [
 ]
 
 
-def get_transactions_fnc(transactions: List[Dict], search_bar: str) -> List[dict[Any, Any] | None]:
+def get_transactions_fnc(transactions: List[Dict], search_bar: str) -> Any:
     """
     Функция для поиска в списке словарей операций по заданной строке.
     :param transactions: Принимает список словарей с данными о банковских операциях.
