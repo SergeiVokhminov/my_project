@@ -7,7 +7,7 @@ def filter_by_state(user_list: List[Dict[str, Any]], state: str = "EXECUTED") ->
     new_list = []
 
     for item in user_list:
-        if item["state"] == state:
+        if item.get("state") == state:
             new_list.append(item)
 
     return new_list
