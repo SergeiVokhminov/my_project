@@ -152,14 +152,14 @@ def get_transactions_fnc(transactions: List[Dict], search_bar: str) -> List[Dict
     pattern = fr'{search_bar}'
     result_dict = []
     for item in transactions:
-        if re.findall(pattern, item.get('operationAmount').get('currency').get('code'), flags=re.I):
+        if re.findall(pattern, item.get('description'), flags=re.I):
             result_dict.append(item)
 
     return result_dict
 
 
 if __name__ == '__main__':
-    print(get_transactions_fnc(user_dict, 'EUR'))
+    print(get_transactions_fnc(user_dict, 'вклад'))
 
 
 def get_transactions_key(transactions: List[Dict], descriptions: List[str]) -> Counter[Any | None]:
@@ -183,4 +183,4 @@ def get_transactions_key(transactions: List[Dict], descriptions: List[str]) -> C
 
 
 if __name__ == '__main__':
-    print(get_transactions_key(user_dict, ['Открытие вклада', 'Перевод организации']))
+    print(get_transactions_key(user_dict, ['Карт', 'Счет', 'Открытие']))
