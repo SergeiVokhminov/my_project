@@ -14,7 +14,7 @@ def fnc_convert_rud(transaction: dict) -> float | str:
     происходит обращение к внешнему API для получения текущего курса валют и конвертации суммы операции в рубли.
     :param transaction: Принимает на вход транзакцию.
     :return: Возвращает сумму транзакции (amount) в рублях, тип данных — float.
-    """""" """
+    """ """ """
 
     amount = transaction["amount"]
     currency = transaction["currency"]
