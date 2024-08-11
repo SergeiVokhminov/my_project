@@ -14,7 +14,8 @@ def get_file_csv(filename: str) -> list[dict]:
     """
 
     try:
-        pd_csv = pd.read_csv(filename)
+        pd_csv = pd.read_csv(filename, sep=";", decimal=",", encoding="utf-8")
+        print(pd_csv)
         return pd_csv.to_dict(orient="records")
     except Exception as ex:
         print(f"Произошла ошибка {ex}")
