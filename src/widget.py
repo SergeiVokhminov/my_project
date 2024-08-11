@@ -11,11 +11,11 @@ def mask_account_card(number: str) -> str:
     """
 
     number_split = number.split()
-    if "Счет" in number_split and len(number_split[1]) == 20:
-        return f"{number_split[0]} {get_mask_account(number_split[1])}"
-    elif number_split[0] in ["Visa", "MasterCard", "Maestro", "Visa Classic", "Visa Platinum", "Visa Gold"]:
-        name_card = " ".join(number_split)[:-16]
-        return f"{name_card}{get_mask_card_number(''.join(number_split)[-16:])}"
+    if number_split[0] == "Счет" and len(number_split[-1]) == 20:
+        return f"{number_split[0]} {get_mask_account(number_split[-1])}"
+    elif len(number_split[-1]) == 16:
+        name_card = " ".join(number_split[:-1])
+        return f"{name_card} {get_mask_card_number(''.join(number_split[-1]))}"
     else:
         return "Введены неверные данные"
 
@@ -27,8 +27,7 @@ def get_date(user_date: str) -> str:
     :return: Возвращает строку с датой в формате "ДД.ММ.ГГГГ"
     """
 
-    date_format = "%Y-%m-%dT%H:%M:%S.%f"
-    date_obj = datetime.strptime(user_date, date_format)
+    date_obj = datetime.fromisoformat(user_date)
     return date_obj.strftime("%d.%m.%Y")
 
 
