@@ -21,10 +21,6 @@ def get_file_csv(filename: str) -> list[dict]:
         return []
 
 
-if __name__ == "__main__":
-    print(get_file_csv(PATH_TO_FILE_CSV))
-
-
 def get_file_xlsx(filename: str) -> list[dict]:
     """
     Функция для считывания финансовых операций из Excel.
@@ -41,4 +37,6 @@ def get_file_xlsx(filename: str) -> list[dict]:
 
 
 if __name__ == "__main__":
+    print(get_file_csv(PATH_TO_FILE_CSV))
+    print()
     print(get_file_xlsx(PATH_TO_FILE_EXCEL))

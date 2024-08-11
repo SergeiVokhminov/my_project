@@ -34,6 +34,7 @@ def get_date(user_date: str) -> str:
 
 if __name__ == "__main__":
     print(mask_account_card("MasterCard 1234567890098765"))
+    print()
     print(mask_account_card("Счет 12345678900987654321"))
     print()
     print(get_date("2028-11-25T02:26:18.671407"))

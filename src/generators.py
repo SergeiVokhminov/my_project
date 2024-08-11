@@ -8,6 +8,7 @@ def filter_by_currency(transaction: List[Dict[str, Any]], currency: str) -> Gene
     :param currency: Принимает наименование валюты (например, USD).
     :return: Возвращает итератор, который поочередно выдает транзакции, где валюта операции соответствует заданной.
     """
+
     for item in transaction:
         if item.get("operationAmount").get("currency").get("code") == currency:
             yield item
@@ -19,6 +20,7 @@ def transaction_descriptions(transaction: List[Dict[str, Any]]) -> Generator[Any
     :param transaction: Принимает список словарей с транзакциями.
     :return: Возвращает описание каждой операции по очереди.
     """
+
     for key in transaction:
         yield key.get("description")
 
@@ -30,6 +32,7 @@ def card_number_generator(start: int, finish: int) -> Generator[str, None, None]
     :param finish: Принимает конечное значения для генерации диапазона номеров.
     :return: Генератор выдает номера банковских карт в формате XXXX XXXX XXXX XXXX, где X — цифра номера карты.
     """
+
     for number in range(start, finish + 1):
         card_numbers = str(number)
         while len(card_numbers) < 16:
