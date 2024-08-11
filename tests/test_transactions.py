@@ -69,6 +69,15 @@ def tests_transactions_fnc(coll_fnc: List[Dict[str, Any]]) -> Any:
     ]
 
 
+@pytest.fixture
+def coll_fnc_none() -> List[Dict[str, Any]]:
+    return []
+
+
+def tests_transactions_fnc_none(coll_fnc_none: List[Dict[str, Any]]) -> Any:
+    assert get_transactions_fnc(coll_fnc_none, "открытие") == []
+
+
 @pytest.mark.parametrize(
     "transactions, description, expected",
     [
