@@ -13,6 +13,8 @@
 6. в модуле external_api.py выводит сумму транзакции в рублях. Если транзакция в долларах или евро, то конвектирует в рубли.
 7. в модуле utils.py принимает JSON-файл и возвращает список словарей с данными о финансовых транзакциях.
 8. в модуле work_files_csv_xlsx принимает CSV-файл и EXCEL-файл и возвращает список словарей с транзакциями.
+9. в модуле transactions.py возвращает список словарей, у которых в описании есть введенная строка. 
+9. в модуле main.py реализовано взаимодействие с пользователем.
 
 ## Используемые зависимости в проекте:
 
@@ -63,8 +65,8 @@ pip install -r requirements.txt
 ## Использование модуля main.py
 
 1. откройте модуль main.py.
-2. заполните переменные user_numbers, user_date_srt, user_list.
-3. запустите модуль main.py.
+2. запустите модуль main.py. ''' if __name__ == "__main__": '''
+3. отвечайте на вопросы.
 
 ## Использование модуля external_api.py
 
@@ -91,6 +93,14 @@ pip install -r requirements.txt
     print(get_file_csv(PATH_TO_FILE_CSV)) '''
 - ''' if __name__ == "__main__":
 print(get_file_xlsx(PATH_TO_FILE_EXCEL)) '''
+
+## Использование модуля transactions.py
+
+1. откройте модуль transactions.py
+2. запустите для примера:
+- if __name__ == "__main__":
+    print(get_transactions_fnc(user_dict, "вклад"))
+    print(get_transactions_key(user_dict, ["Карт", "Счет", "Открытие"]))
 
 ## Проверка работы генераторов:
 

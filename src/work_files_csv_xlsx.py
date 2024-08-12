@@ -14,15 +14,11 @@ def get_file_csv(filename: str) -> list[dict]:
     """
 
     try:
-        pd_csv = pd.read_csv(filename)
+        pd_csv = pd.read_csv(filename, sep=";", decimal=",", encoding="utf-8")
         return pd_csv.to_dict(orient="records")
     except Exception as ex:
         print(f"Произошла ошибка {ex}")
         return []
-
-
-if __name__ == "__main__":
-    print(get_file_csv(PATH_TO_FILE_CSV))
 
 
 def get_file_xlsx(filename: str) -> list[dict]:
@@ -41,4 +37,6 @@ def get_file_xlsx(filename: str) -> list[dict]:
 
 
 if __name__ == "__main__":
+    print(get_file_csv(PATH_TO_FILE_CSV))
+    print()
     print(get_file_xlsx(PATH_TO_FILE_EXCEL))
