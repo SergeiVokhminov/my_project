@@ -103,10 +103,6 @@ def get_transactions_fnc(transactions: List[Dict], search_bar: str) -> Any:
     return result_dict
 
 
-if __name__ == "__main__":
-    print(get_transactions_fnc(user_dict, "вклад"))
-
-
 def get_transactions_key(transactions: List[Dict], descriptions: List[str]) -> Counter[Any | None]:
     """
     Функция для подсчета количества банковских операций определенного типа.
@@ -128,4 +124,6 @@ def get_transactions_key(transactions: List[Dict], descriptions: List[str]) -> C
 
 
 if __name__ == "__main__":
+    print(get_transactions_fnc(user_dict, "вклад"))
+    print()
     print(get_transactions_key(user_dict, ["Карт", "Счет", "Открытие"]))
